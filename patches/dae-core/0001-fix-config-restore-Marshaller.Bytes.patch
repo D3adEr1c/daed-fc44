@@ -1,0 +1,32 @@
+From 85d232a590fbf59876584e46fffc5b6f8af69f70 Mon Sep 17 00:00:00 2001
+From: Zakkaus <zakk@gentoozh.org>
+Date: Sun, 20 Sep 2026 16:38:11 +1000
+Subject: [PATCH 1/2] fix(config): restore Marshaller.Bytes
+
+dae-wing marshals a single `global` section with config.Marshaller and
+reads the result back through Bytes; #1099 dropped the accessor as unused
+and the buffer is unexported, so there is no other way to get the output.
+---
+ config/marshal.go | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/config/marshal.go b/config/marshal.go
+index f68006a..039e1b4 100644
+--- a/config/marshal.go
++++ b/config/marshal.go
+@@ -42,6 +42,12 @@ type Marshaller struct {
+ 	buf         bytes.Buffer
+ }
+ 
++// Bytes returns the marshalled sections written so far. Embedding callers
++// such as dae-wing marshal a single section and need the raw output.
++func (m *Marshaller) Bytes() []byte {
++	return m.buf.Bytes()
++}
++
+ func (m *Marshaller) writeLine(depth int, line string) {
+ 	if depth < 0 {
+ 		depth = 0
+-- 
+2.55.0
+

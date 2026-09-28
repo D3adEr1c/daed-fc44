@@ -1,0 +1,25 @@
+From b63b7c235fa71c1800af6d37c7783777e4e4310a Mon Sep 17 00:00:00 2001
+From: D3adEr1c <lqyyy0717@outlook.com>
+Date: Tue, 29 Sep 2026 06:05:53 +0800
+Subject: [PATCH] fix(subscription): simplify subscription User-Agent
+
+---
+ graphql/service/subscription/mutation_utils.go | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/graphql/service/subscription/mutation_utils.go b/graphql/service/subscription/mutation_utils.go
+index 7e6dc08..c9c53e1 100644
+--- a/graphql/service/subscription/mutation_utils.go
++++ b/graphql/service/subscription/mutation_utils.go
+@@ -67,7 +67,7 @@ func _fetchLinks(subscriptionLink string, transport http.RoundTripper, timeout t
+ 	if err != nil {
+ 		return nil, err
+ 	}
+-	req.Header.Set("User-Agent", fmt.Sprintf("%v/%v (like v2rayA/1.0 WebRequestHelper) (like v2rayN/1.0 WebRequestHelper)", db.AppName, db.AppVersion))
++	req.Header.Set("User-Agent", fmt.Sprintf("%v/%v WebRequestHelper", db.AppName, db.AppVersion))
+ 	resp, err = c.Do(req)
+ 	if err != nil {
+ 		return nil, err
+-- 
+2.55.0
+

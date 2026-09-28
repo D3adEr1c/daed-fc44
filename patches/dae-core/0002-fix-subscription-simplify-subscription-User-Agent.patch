@@ -1,0 +1,25 @@
+From 49d8937c34c15db2a6302d2899b328467e953283 Mon Sep 17 00:00:00 2001
+From: D3adEr1c <lqyyy0717@outlook.com>
+Date: Tue, 29 Sep 2026 06:02:15 +0800
+Subject: [PATCH 2/2] fix(subscription): simplify subscription User-Agent
+
+---
+ common/subscription/subscription.go | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/common/subscription/subscription.go b/common/subscription/subscription.go
+index 746515d..f275d4b 100644
+--- a/common/subscription/subscription.go
++++ b/common/subscription/subscription.go
+@@ -186,7 +186,7 @@ func ResolveSubscription(log *logrus.Logger, client *http.Client, configDir stri
+ 	if err != nil {
+ 		return "", nil, err
+ 	}
+-	req.Header.Set("User-Agent", fmt.Sprintf("dae/%v (like v2rayA/1.0 WebRequestHelper) (like v2rayN/1.0 WebRequestHelper)", config.Version))
++	req.Header.Set("User-Agent", fmt.Sprintf("dae/%v WebRequestHelper", config.Version))
+ 	resp, err = client.Do(req)
+ 	if err != nil {
+ 		if persistToFile {
+-- 
+2.55.0
+
