@@ -21,6 +21,9 @@
 
 ---
 
+# **Personal use only, dont create issue or pr**
+see # Development for build tutorial 
+
 ## 📸 Screenshots
 
 <details open>
@@ -111,21 +114,33 @@ Access the dashboard at `http://localhost:2023`.
 
 ### Prerequisites
 
+frontend
 - [Node.js](https://nodejs.org/) >= 20
 - [pnpm](https://pnpm.io/) >= 9
+
+backend
+- git
+- make
+- clang
+- llvm
+- golang
 
 ### Setup
 
 ```bash
 # Clone the repository
-git clone https://github.com/daeuniverse/daed.git
-cd daed
+git clone https://github.com/D3adEr1c/daed-fc44.git
+cd daed-fc44
 
 # Install dependencies
 pnpm install
 
 # Start development server
 pnpm dev
+
+# Build
+chmod +x ./scripts/build-fc44.sh
+./scripts/build-fc44.sh {VERSION}
 ```
 
 ### Available Scripts
